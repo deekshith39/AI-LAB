@@ -7,7 +7,7 @@ goal = [[0, 1, 2],
 #        [3, 7, 5],
 #        [6, 0, 8]]
 
-
+#USING HEURISTIC FUNCTION (Manhattan Distance)
 
 
 def index(myList, v):
@@ -85,8 +85,6 @@ def solve(visited,limit,src):
 def print_matrix(mat):
     for i in mat:
         print(i)
-
-
 
 if __name__ == '__main__':
     limit = 0
