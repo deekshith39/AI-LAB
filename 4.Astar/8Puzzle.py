@@ -90,12 +90,13 @@ if __name__ == '__main__':
     limit = 0
     visited = []
     src = []
+    print("***Heuristic Function***")
+    print()
     print("Enter the source state : ")
     for i in range(3):
         a = list(map(int,input().split()))
         src.append(a)
     print()
-    print("***Heuristic Function***")
     print()
     print("Goal State : ")
     print_matrix(goal)

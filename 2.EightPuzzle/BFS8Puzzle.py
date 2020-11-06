@@ -1,13 +1,5 @@
 import copy
 
-c = [0]
-
-def printSolutionRoute(route):
-    print("Solution: ")
-    for step, state in enumerate(route):
-        print("Step: ", step+1)
-        print_matrix(state)
-
 def print_matrix(mat):
     for row in mat:
         print(row)
@@ -52,45 +44,56 @@ def possible_moves(temp, visited):
     return possible_mvs
 
 
-def dfs(curr, goal, visited, moves):
-    if curr == goal :
-        printSolutionRoute(visited)
-        #print("Number of moves taken to solve 8 puzzle is : " + str(moves))
-        return True
-    if moves >= 12 :
-        return False
-    visited = visited + [curr]
 
-    actions = possible_moves(curr,visited)
+def BFS(curr, goal, visited):
+    moves = 1
+    frontier = []
+    visited.append(curr)
+    frontier.append(curr)
 
-    for action in actions:
-        if action not in visited:
-            c[0] = c[0] + 1
-            #print_matrix(action)
-            if dfs(action, goal, visited, moves+1) is True:
-                return True
-    return False
+    while True:
+        temp = frontier.pop(0)
+        # if(temp == goal):
+        #     print_matrix(temp)
+        #     print("The Puzzle is solved in " + str(moves) + " moves")
+        #     print("Successful! ")
+        #     return True
+        if moves > 120:
+            return False
+
+        actions = possible_moves(temp,visited)
+
+        for action in actions:
+            if action not in visited:
+                print("Step "+str(moves)+" :")
+                print_matrix(action)
+                if action == goal:
+                    print("The puzzle has been solved after " + str(moves) + " moves")
+                    print("Successful!")
+                    return True
+                moves += 1
+                visited.append(action)
+                frontier.append(action)
+
 
 if __name__ == '__main__':
+    print("**Using BFS**")
     goal_state = [[0, 1, 2],
                   [3, 4, 5],
                   [6, 7, 8]]
-    print("Using DFS Method ")
+    print("GOAL STATE : ")
+    print_matrix(goal_state)
+
     print("Enter the source state : ")
     src = []
     for i in range(3):
         temp = list(map(int, input().split()))
         src.append(temp)
-    print("Goal State : ")
-    print_matrix(goal_state)
-    print()
-    print("Source State: ")
+
+    print("Source State : ")
     print_matrix(src)
     visited = []
-
-    if dfs(src,goal_state,visited,0) is True:
-        print("Goal State : ")
-        print_matrix(goal_state)
-        print("Puzzle has been solved in " + str(c[0]+1) + " moves")
+    if BFS(src, goal_state, visited) is True:
+        print("The Puzzle has been Solved!")
     else:
-        print("It is impossible to solve the puzzle!")
+        print("It is Impossible to solve the puzzle")

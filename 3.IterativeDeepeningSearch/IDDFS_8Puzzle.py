@@ -100,7 +100,10 @@ if __name__ == '__main__':
     # src = [[1, 4, 2],
     #        [3, 7, 5],
     #        [6, 0, 8]]
+    print("GOAL STATE")
+    print_matrix(goal)
     src = []
+    print("Iterative Deepening")
     print("Enter the source state : ")
     for i in range(3):
         a = list(map(int, input().split()))
@@ -108,9 +111,6 @@ if __name__ == '__main__':
 
     print("INITIAL STATE : ")
     print_matrix(src)
-
-    print("GOAL STATE")
-    print_matrix(goal)
 
     depth = iddfs(src,goal)
     if depth:
