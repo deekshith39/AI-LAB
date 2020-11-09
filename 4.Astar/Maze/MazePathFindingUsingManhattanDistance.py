@@ -4,17 +4,17 @@ path = []
 closedPath = []
 neighbours = [[-1, -1],[-1, 0],[-1, 1],[0, -1],[0, 1],[1, -1],[1, 0],[1, 1]]
 
-def Manhattan(action, n, m):
+def Manhattan(action, src, dest):
     #currstate - goalstate coordinates
-    return abs(action[0] - (n-1)) + abs(action[1] - (m-1))
-
-def ShortestDistance(actions, n, m):
+    return abs(action[0] - (dest[0]-1)) + abs(action[1] - (dest[1]-1))
+4
+def ShortestDistance(actions, src, dest):
     min = math.inf
 
     for action in actions:
-        if Manhattan(action,n,m) < min:
+        if Manhattan(action,src,dest) < min:
             move = action
-            min = Manhattan(action,n,m)
+            min = Manhattan(action,src,dest)
     return move
 
 def possible_moves(mat, curr, n, m):
@@ -38,7 +38,7 @@ def findPath(mat, n, m, src, dest):
         actions = possible_moves(mat, curr, n, m)
 
         if actions:
-            curr = ShortestDistance(actions,n,m)
+            curr = ShortestDistance(actions,src,dest)
             path.append(curr)
         else: #if no moves are possible from present location
             if path:
