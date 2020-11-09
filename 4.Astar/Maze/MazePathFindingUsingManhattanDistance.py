@@ -7,7 +7,7 @@ neighbours = [[-1, -1],[-1, 0],[-1, 1],[0, -1],[0, 1],[1, -1],[1, 0],[1, 1]]
 def Manhattan(action, src, dest):
     #currstate - goalstate coordinates
     return abs(action[0] - (dest[0]-1)) + abs(action[1] - (dest[1]-1))
-4
+
 def ShortestDistance(actions, src, dest):
     min = math.inf
 
